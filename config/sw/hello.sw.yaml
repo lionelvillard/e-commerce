@@ -1,0 +1,16 @@
+id: order
+version: '1.0'
+specVersion: '0.8'
+name: Process Order Workflow
+start: Process Order
+functions:
+  - name: orderNew
+    type: custom
+    # operation: "rest:post:/"
+    operation: "kubernetes:knative/service/order-new"
+states:
+  - name: Process Order
+    type: operation
+    actions:
+      - functionRef: orderNew
+    end: true

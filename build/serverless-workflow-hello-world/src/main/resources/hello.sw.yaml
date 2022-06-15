@@ -1,0 +1,21 @@
+id: hello_world
+version: '1.0'
+specVersion: '0.8'
+name: Hello World Workflow
+description: JSON based hello world workflow
+start: Inject Hello World
+functions:
+  - name: orderNew
+    type: custom
+    operation: "rest:post:/"
+states:
+  - name: Inject Hello World
+    type: operation
+    actions:
+      - functionRef: orderNew
+    transition: Inject Mantra
+  - name: Inject Mantra
+    type: inject
+    data:
+      mantra: Serverless Workflow is awesome!
+    end: true
